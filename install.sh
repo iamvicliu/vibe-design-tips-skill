@@ -13,8 +13,27 @@ install_to() {
   echo "Installed ${SKILL_NAME} -> ${target_dir}"
 }
 
-if [[ $# -gt 0 ]]; then
-  for custom_base in "$@"; do
+SYNC_FIRST=0
+CUSTOM_TARGETS=()
+
+for arg in "$@"; do
+  case "${arg}" in
+    --sync)
+      SYNC_FIRST=1
+      ;;
+    *)
+      CUSTOM_TARGETS+=("${arg}")
+      ;;
+  esac
+done
+
+if [[ ${SYNC_FIRST} -eq 1 ]]; then
+  echo "Syncing latest official tips from https://vibedesign.tips/ ..."
+  python3 "${REPO_DIR}/scripts/sync_official.py"
+fi
+
+if [[ ${#CUSTOM_TARGETS[@]} -gt 0 ]]; then
+  for custom_base in "${CUSTOM_TARGETS[@]}"; do
     install_to "${custom_base}"
   done
   exit 0

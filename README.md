@@ -3,14 +3,14 @@
 > **⚠️ 版权声明与原作者致谢 / Attribution & Credits**  
 > 本仓库为社区整理的 **All-in-One 合集 Skill 封装版本（非官方仓库）**。  
 > 全部设计规范、量化参数与分期改造提示词均源自设计师 **枯白 Kubai（[@Kubai087](https://x.com/Kubai087)）** 的开源免费系列教程 [**《999 个小技巧，让你 Vibe 的产品更有质感》**](https://vibedesign.tips/)（原站：[`https://vibedesign.tips`](https://vibedesign.tips/) · 原帖推荐：[X 讨论帖](https://x.com/Kubai087/status/2122917792903209141)）。  
-> 原作者官方在网站按**单篇分散形式**提供逐期独立 `SKILL.md` 安装（截至 2026-11-19 官方 GitHub 发布的主仓库是动态图标库 [`kubai087/kubai-icons`](https://github.com/kubai087/kubai-icons)）。为了方便 AI Coding Agent 在一次对话中综合检索与应用全套规范，本仓库将已发布的 **001～020 期** 规范浓缩为统一入口 `SKILL.md` + 20 篇分册索引 `issues/`，供个人学习与开发辅助使用。**所有原始设计教程与提示词的著作权及解释权归原作者 [@Kubai087](https://x.com/Kubai087) 所有。**
+> 原作者官方在网站按**单篇分散形式**提供逐期独立 `SKILL.md` 安装（截至 2026-11-19 官方 GitHub 发布的主仓库是动态图标库 [`kubai087/kubai-icons`](https://github.com/kubai087/kubai-icons)）。为了方便 AI Coding Agent 在一次对话中综合检索与应用全套规范，本仓库将已发布的 **001～022 期** 规范浓缩为统一入口 `SKILL.md` + 22 篇分册索引 `issues/`，供个人学习与开发辅助使用。**所有原始设计教程与提示词的著作权及解释权归原作者 [@Kubai087](https://x.com/Kubai087) 所有。**
 
 ---
 
 ## ✨ 这个合集 Skill 有什么不同？
 
 - **一页总览 + 按需深入**：`SKILL.md` 提炼了高频通用的设计法则（同心圆角、微拟物按钮、等宽数字排版、浮层与加载状态矩阵、选择控件矩阵、液态玻璃边缘光与动效曲线），并兼顾 **Web CSS** 与 **iOS/macOS SwiftUI** 双端实现；
-- **全 20 期完整收录**：`issues/001-*.md` ～ `issues/020-*.md` 原样收录了官网提供的完整分期改造规则与量化参数，Agent 可在需要某一项专项打磨（如镭射卡 `#018`、滚动卡片 `#019`、选择控件诊断 `#020`）时按需读取对应分册；
+- **全 22 期完整收录**：`issues/001-*.md` ～ `issues/022-*.md` 原样收录了官网提供的完整分期改造规则与量化参数，Agent 可在需要某一项专项打磨（如镭射卡 `#018`、滚动卡片 `#019`、选择控件诊断 `#020`）时按需读取对应分册；
 - **多端 Agent 开箱即用**：兼容 **Claude Code**、**OpenAI Codex CLI**、**Antigravity**、**Cursor** 等支持 `SKILL.md` 规范的工具。
 
 ---
@@ -41,8 +41,28 @@ cp -R SKILL.md issues ~/.claude/skills/vibe-design-tips/
 
 ---
 
-## 📚 收录期数一览（001～020 期）
+## 🔄 自动同步官网更新 / Auto Sync
 
+本仓库通过 GitHub Actions（[`.github/workflows/sync-official.yml`](./.github/workflows/sync-official.yml)）**每天定时**从官方站点 [`https://vibedesign.tips`](https://vibedesign.tips/) 抓取最新发布及修订的分期内容，自动更新 `issues/`、`SKILL.md` 与 `README.md` 并提交到主分支（也支持在 Actions 页面手动点击 **Run workflow** 立即触发）。
+
+本地手动同步与更新安装：
+
+```bash
+# 从官网同步最新期数与修订内容（纯 Python 3 标准库，无需安装依赖）
+python3 scripts/sync_official.py
+
+# 仅预览变更不写入文件
+python3 scripts/sync_official.py --dry-run
+
+# 同步官网最新内容并重新安装到本地 Agent 目录
+./install.sh --sync
+```
+
+---
+
+## 📚 收录期数一览（001～022 期）
+
+<!-- AUTO-SYNC:README-TABLE:START -->
 | 期数 | 主题 | 分册文件 |
 | :--- | :--- | :--- |
 | `#001` | 有按压反馈的拟物按钮（五层级、五层材质、按压光影） | [`001-skeuomorphic-buttons.md`](./issues/001-skeuomorphic-buttons.md) |
@@ -65,6 +85,9 @@ cp -R SKILL.md issues ~/.claude/skills/vibe-design-tips/
 | `#018` | 3D 视差镭射卡片（6 种箔片材质预设与正反翻转） | [`018-holo-card.md`](./issues/018-holo-card.md) |
 | `#019` | 滚动驱动的 5 种长页卡片交互（堆叠 / 飞牌 / 画廊 / 封面流 / 图片展开） | [`019-scroll-cards.md`](./issues/019-scroll-cards.md) |
 | `#020` | 开关、复选框、单选、分段选择与下拉控件选用规则 | [`020-choice-controls.md`](./issues/020-choice-controls.md) |
+| `#021` | 景深环形卡片、边缘玻璃色散与流体渐变（环内/环外双视角） | [`021-ring-cards.md`](./issues/021-ring-cards.md) |
+| `#022` | 空状态诊断与改造（线框版 / 图标版 / 迷你版、按钮与文案规范） | [`022-empty-states.md`](./issues/022-empty-states.md) |
+<!-- AUTO-SYNC:README-TABLE:END -->
 
 ---
 

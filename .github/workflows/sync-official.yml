@@ -1,0 +1,67 @@
+name: Sync Official Vibe Design Tips
+
+on:
+  schedule:
+    # Run daily at 04:00 UTC (12:00 UTC+8)
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview sync diff without committing changes"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-official
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sync official tips from vibedesign.tips
+        id: sync
+        env:
+          DRY_RUN: ${{ inputs.dry_run || false }}
+        run: |
+          set -euo pipefail
+          EXTRA_ARGS=()
+          if [[ "${DRY_RUN}" == "true" ]]; then
+            EXTRA_ARGS+=(--dry-run)
+          fi
+          python3 scripts/sync_official.py \
+            "${EXTRA_ARGS[@]}" \
+            --summary-file "${GITHUB_STEP_SUMMARY}" \
+            --commit-msg-file /tmp/sync-commit-msg.txt
+
+      - name: Commit and push updates
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$(git status --porcelain -- issues/ SKILL.md README.md)" ]]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add issues/ SKILL.md README.md
+          if [[ -f /tmp/sync-commit-msg.txt ]]; then
+            git commit -F /tmp/sync-commit-msg.txt
+          else
+            git commit -m "chore(sync): update official tips from vibedesign.tips"
+          fi
+          git push

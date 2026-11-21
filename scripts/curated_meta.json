@@ -1,0 +1,120 @@
+{
+  "categories": [
+    "按钮与材质",
+    "布局与排版",
+    "交互、浮层与控件",
+    "高级动效与卡片"
+  ],
+  "issues": {
+    "001-skeuomorphic-buttons": {
+      "category": "按钮与材质",
+      "skill_summary": "拟物按钮五层级、五层材质与按压状态",
+      "readme_summary": "有按压反馈的拟物按钮（五层级、五层材质、按压光影）"
+    },
+    "002-cascade-menu": {
+      "category": "交互、浮层与控件",
+      "skill_summary": "级联菜单安全三角区与开/切/关延时",
+      "readme_summary": "级联菜单安全三角区与延时规则"
+    },
+    "003-ascii-dither": {
+      "category": "按钮与材质",
+      "skill_summary": "图片/视频实时 ASCII 字符画与有序抖色",
+      "readme_summary": "实时 ASCII 字符画与有序抖色（Dither）"
+    },
+    "004-continuous-corners": {
+      "category": "布局与排版",
+      "skill_summary": "同心嵌套圆角公式 `r = R - p` 与 `superellipse`",
+      "readme_summary": "同心圆角公式（`r = R - p`）与连续曲率（Squircle / Superellipse）"
+    },
+    "005-drag-ripple": {
+      "category": "高级动效与卡片",
+      "skill_summary": "拖拽排序光标、插入线与相邻避让波纹",
+      "readme_summary": "拖拽排序光标、落点线与相邻避让动效"
+    },
+    "006-book-cards": {
+      "category": "高级动效与卡片",
+      "skill_summary": "悬停立体翻书卡片",
+      "readme_summary": "悬停立体翻书卡片"
+    },
+    "007-type-switches": {
+      "category": "布局与排版",
+      "skill_summary": "中英文混排、孤字消除与等宽数字防抖动",
+      "readme_summary": "中英文排版与等宽数字防抖动（`tabular-nums` / `text-wrap`）"
+    },
+    "008-wiki-layout": {
+      "category": "布局与排版",
+      "skill_summary": "Wiki 与帮助中心双栏大纲及移动端适配",
+      "readme_summary": "Wiki 与帮助中心双栏大纲布局规范"
+    },
+    "009-overlays": {
+      "category": "交互、浮层与控件",
+      "skill_summary": "Tooltip / Popover / Popconfirm / Drawer / Dialog 分级",
+      "readme_summary": "浮层分级规则（Tooltip / Popover / Popconfirm / Drawer / Dialog）"
+    },
+    "010-liquid-glass": {
+      "category": "按钮与材质",
+      "skill_summary": "液态玻璃六层材质与自适应文字对比度",
+      "readme_summary": "液态玻璃六层材质与自适应文字对比度"
+    },
+    "011-easing-curves": {
+      "category": "高级动效与卡片",
+      "skill_summary": "动效缓动曲线与 Motion Token 体系",
+      "readme_summary": "缓动曲线与动效 Token 体系"
+    },
+    "012-message-bubbles": {
+      "category": "高级动效与卡片",
+      "skill_summary": "AI 对话消息气泡六种材质与收发/展开动效",
+      "readme_summary": "AI 对话消息气泡六种材质与收发/展开动效"
+    },
+    "013-shockwave-glow": {
+      "category": "高级动效与卡片",
+      "skill_summary": "点击触发全页冲击波光环与透镜色散",
+      "readme_summary": "冲击波光环与透镜色散特效"
+    },
+    "014-card-delete": {
+      "category": "高级动效与卡片",
+      "skill_summary": "卡片删除消散特效（Burn / Plume / Blocks / Peel）",
+      "readme_summary": "卡片删除消散特效（Burn / Plume / Blocks / Peel）"
+    },
+    "015-ui-continuity": {
+      "category": "高级动效与卡片",
+      "skill_summary": "界面连续性与跨状态平滑形变过渡",
+      "readme_summary": "界面连续性与跨状态共享元素过渡"
+    },
+    "016-toast-or-notification": {
+      "category": "交互、浮层与控件",
+      "skill_summary": "Toast 与通知中心选用与堆叠规则",
+      "readme_summary": "Toast 与通知中心的选择、堆叠与自动消隐规则"
+    },
+    "017-loading-states": {
+      "category": "交互、浮层与控件",
+      "skill_summary": "加载状态时间门槛与原地/骨架/进度矩阵",
+      "readme_summary": "加载状态选择矩阵（300ms 门槛 / 原地旋转 / 骨架屏 / 乐观更新）"
+    },
+    "018-holo-card": {
+      "category": "高级动效与卡片",
+      "skill_summary": "3D 视差镭射会员卡/徽章（6 种材质预设）",
+      "readme_summary": "3D 视差镭射卡片（6 种箔片材质预设与正反翻转）"
+    },
+    "019-scroll-cards": {
+      "category": "高级动效与卡片",
+      "skill_summary": "滚动驱动的 5 种长页卡片叙事交互",
+      "readme_summary": "滚动驱动的 5 种长页卡片交互（堆叠 / 飞牌 / 画廊 / 封面流 / 图片展开）"
+    },
+    "020-choice-controls": {
+      "category": "交互、浮层与控件",
+      "skill_summary": "Switch / Checkbox / Radio / Segmented / Select / Menu",
+      "readme_summary": "开关、复选框、单选、分段选择与下拉控件选用规则"
+    },
+    "021-ring-cards": {
+      "category": "高级动效与卡片",
+      "skill_summary": "景深环形卡片、边缘玻璃色散与流体渐变",
+      "readme_summary": "景深环形卡片、边缘玻璃色散与流体渐变（环内/环外双视角）"
+    },
+    "022-empty-states": {
+      "category": "交互、浮层与控件",
+      "skill_summary": "空状态诊断与改造（线框版 / 图标版 / 迷你版与文案规范）",
+      "readme_summary": "空状态诊断与改造（线框版 / 图标版 / 迷你版、按钮与文案规范）"
+    }
+  }
+}
