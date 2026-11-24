@@ -3,10 +3,10 @@ name: vibe-design-tips
 description: 使用 Vibe Design Tips（@Kubai087，《999 个小技巧，让你 Vibe 的产品更有质感》）的量化界面质感规范审查与打磨 iOS/macOS SwiftUI 与 Web UI。触发词：界面质感、圆角、排版、拟物按钮、液态玻璃、动效曲线、加载状态、选择控件、空状态、连续性、vibe design tips。
 ---
 
-# Vibe Design Tips UI 质感打磨指南（All-in-One 001～022 期精华）
+# Vibe Design Tips UI 质感打磨指南（All-in-One 001～024 期精华）
 
 > **致谢与来源声明**：本 Skill 中的设计法则、量化参数与单期改造提示词整理自设计师 **枯白 Kubai（[@Kubai087](https://x.com/Kubai087)）** 的免费开源设计专栏 [**Vibe Design Tips**](https://vibedesign.tips/)（《999 个小技巧，让你 Vibe 的产品更有质感》），原始版权归原作者所有。  
-> 各期完整原版提示词与细则存放于同目录下的 `./issues/<slug>.md`（已按 001～022 期完整收录）。
+> 各期完整原版提示词与细则存放于同目录下的 `./issues/<slug>.md`（已按 001～024 期完整收录）。
 
 ## 1. 最常用高频量化法则（可直接落地到 SwiftUI 与 Web CSS）
 
@@ -48,7 +48,7 @@ description: 使用 Vibe Design Tips（@Kubai087，《999 个小技巧，让你 
    - 按空间大小选尺寸（页面 / 卡片 / 单行 / 菜单）而非只按类型：保留页面骨架（标题栏、搜索框、筛选条件），避免空白区域、裸“暂无数据”或永不结束的加载圈；
    - 顺序固定为「图形（双色图标或自绘线框，避免通用插画/emoji）→ 标题 → 说明（卡片/行/菜单级省略）→ 最多 1 主 1 次动词按钮」；错误提示用人话说明发生了什么、数据是否安全及下一步，不直接暴露 HTTP 500 / 堆栈信息。
 
-## 2. 完整分册索引（001～022 期）
+## 2. 完整分册索引（001～024 期）
 
 需要某一期完整参数、诊断方法或详细 Prompt 时，直接读取本 Skill 目录下的 `./issues/<slug>.md`：
 
@@ -77,6 +77,8 @@ description: 使用 Vibe Design Tips（@Kubai087，《999 个小技巧，让你 
 |  | [`018-holo-card.md`](./issues/018-holo-card.md) | 3D 视差镭射会员卡/徽章（6 种材质预设） |
 |  | [`019-scroll-cards.md`](./issues/019-scroll-cards.md) | 滚动驱动的 5 种长页卡片叙事交互 |
 |  | [`021-ring-cards.md`](./issues/021-ring-cards.md) | 景深环形卡片、边缘玻璃色散与流体渐变 |
+|  | [`023-mobile-web.md`](./issues/023-mobile-web.md) | 做好移动端网页适配的 4 个细节 |
+|  | [`024-image-loading.md`](./issues/024-image-loading.md) | AI 生图的点阵等待与出图动效 |
 <!-- AUTO-SYNC:SKILL-TABLE:END -->
 
 ## 3. Agent 审查与落地工作流
