@@ -3,14 +3,14 @@
 > **⚠️ 版权声明与原作者致谢 / Attribution & Credits**  
 > 本仓库为社区整理的 **All-in-One 合集 Skill 封装版本（非官方仓库）**。  
 > 全部设计规范、量化参数与分期改造提示词均源自设计师 **枯白 Kubai（[@Kubai087](https://x.com/Kubai087)）** 的开源免费系列教程 [**《999 个小技巧，让你 Vibe 的产品更有质感》**](https://vibedesign.tips/)（原站：[`https://vibedesign.tips`](https://vibedesign.tips/) · 原帖推荐：[X 讨论帖](https://x.com/Kubai087/status/2122917792903209141)）。  
-> 原作者官方在网站按**单篇分散形式**提供逐期独立 `SKILL.md` 安装（截至 2026-11-19 官方 GitHub 发布的主仓库是动态图标库 [`kubai087/kubai-icons`](https://github.com/kubai087/kubai-icons)）。为了方便 AI Coding Agent 在一次对话中综合检索与应用全套规范，本仓库将已发布的 **001～024 期** 规范浓缩为统一入口 `SKILL.md` + 24 篇分册索引 `issues/`，供个人学习与开发辅助使用。**所有原始设计教程与提示词的著作权及解释权归原作者 [@Kubai087](https://x.com/Kubai087) 所有。**
+> 原作者官方在网站按**单篇分散形式**提供逐期独立 `SKILL.md` 安装（截至 2026-11-19 官方 GitHub 发布的主仓库是动态图标库 [`kubai087/kubai-icons`](https://github.com/kubai087/kubai-icons)）。为了方便 AI Coding Agent 在一次对话中综合检索与应用全套规范，本仓库将已发布的 **001～025 期** 规范浓缩为统一入口 `SKILL.md` + 25 篇分册索引 `issues/`，供个人学习与开发辅助使用。**所有原始设计教程与提示词的著作权及解释权归原作者 [@Kubai087](https://x.com/Kubai087) 所有。**
 
 ---
 
 ## ✨ 这个合集 Skill 有什么不同？
 
 - **一页总览 + 按需深入**：`SKILL.md` 提炼了高频通用的设计法则（同心圆角、微拟物按钮、等宽数字排版、浮层与加载状态矩阵、选择控件矩阵、液态玻璃边缘光与动效曲线），并兼顾 **Web CSS** 与 **iOS/macOS SwiftUI** 双端实现；
-- **全 24 期完整收录**：`issues/001-*.md` ～ `issues/024-*.md` 原样收录了官网提供的完整分期改造规则与量化参数，Agent 可在需要某一项专项打磨（如镭射卡 `#018`、滚动卡片 `#019`、选择控件诊断 `#020`）时按需读取对应分册；
+- **全 25 期完整收录**：`issues/001-*.md` ～ `issues/025-*.md` 原样收录了官网提供的完整分期改造规则与量化参数，Agent 可在需要某一项专项打磨（如镭射卡 `#018`、滚动卡片 `#019`、选择控件诊断 `#020`）时按需读取对应分册；
 - **多端 Agent 开箱即用**：兼容 **Claude Code**、**OpenAI Codex CLI**、**Antigravity**、**Cursor** 等支持 `SKILL.md` 规范的工具。
 
 ---
@@ -60,7 +60,7 @@ python3 scripts/sync_official.py --dry-run
 
 ---
 
-## 📚 收录期数一览（001～024 期）
+## 📚 收录期数一览（001～025 期）
 
 <!-- AUTO-SYNC:README-TABLE:START -->
 | 期数 | 主题 | 分册文件 |
@@ -89,6 +89,7 @@ python3 scripts/sync_official.py --dry-run
 | `#022` | 空状态诊断与改造（线框版 / 图标版 / 迷你版、按钮与文案规范） | [`022-empty-states.md`](./issues/022-empty-states.md) |
 | `#023` | 以本站实践为例，系统处理手机端 PWA 安装、去掉 iOS 点击高亮、底部滚动折叠 Tab 与 Safari 顶底栏取色 | [`023-mobile-web.md`](./issues/023-mobile-web.md) |
 | `#024` | 用 9 种程序化呼吸点阵替代生图时的单调转圈，搭配 9 种带边缘折射与色散的出图转场，支持任意组合与实时调参 | [`024-image-loading.md`](./issues/024-image-loading.md) |
+| `#025` | 悬停延时的核心是根据用户意图动态响应：涵盖组内热启动、移入容错、按体量定快慢与级联防误触 4 条交互设计准则及可交互演示 | [`025-hover-timing.md`](./issues/025-hover-timing.md) |
 <!-- AUTO-SYNC:README-TABLE:END -->
 
 ---
