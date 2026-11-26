@@ -1,0 +1,23 @@
+{
+  "name": "vibe-design-tips",
+  "version": "1.25.0",
+  "description": "使用 Vibe Design Tips（@Kubai087，《999 个小技巧，让你 Vibe 的产品更有质感》）的量化界面质感规范审查与打磨 iOS/macOS SwiftUI 与 Web UI。",
+  "author": {
+    "name": "iamvicliu",
+    "url": "https://github.com/iamvicliu"
+  },
+  "homepage": "https://vibedesign.tips/",
+  "repository": "https://github.com/iamvicliu/vibe-design-tips-skill",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "ui",
+    "ux",
+    "swiftui",
+    "css",
+    "vibe-design-tips"
+  ],
+  "skills": [
+    "./"
+  ]
+}

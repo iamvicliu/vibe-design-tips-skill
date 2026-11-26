@@ -41,6 +41,56 @@ cp -R SKILL.md issues ~/.claude/skills/vibe-design-tips/
 
 ---
 
+## ⚡ 本地自动同步更新（3 种方式） / Local Auto-Update
+
+云端仓库每天会自动从官网同步新增与修订期数。为了让本地已安装的 Skill 自动跟进最新版本，可按常用工具选择以下任一方式：
+
+### 1. 跨工具全自动同步（推荐，覆盖 Claude Code / Codex / Antigravity）
+
+使用 `--link` 软链接安装并开启本地后台定时拉取（macOS 自动注册 `launchd`，Linux 自动配置 `cron`，默认每 4 小时 + 开机检测一次）：
+
+```bash
+# 软链接安装 + 开启后台自动更新（推荐）
+./install.sh --link --enable-auto-update
+
+# 若需要拷贝实文件（例如需跨设备同步），也可直接开启定时复制更新
+./install.sh --enable-auto-update --interval 6
+
+# 先预览将写入的后台任务配置而不真正修改系统
+./install.sh --link --enable-auto-update --dry-run
+
+# 关闭并移除本地定时更新任务
+./install.sh --disable-auto-update
+```
+
+> 说明：后台脚本 `scripts/auto_sync.sh` 仅在拉取到新提交时才刷新文件，遇到断网或本地有未提交改动时会自动保留现有版本；拷贝模式下通过 `rsync --delete` 同步，不会残留已删除的旧分期文件。
+
+### 2. Claude Code 原生插件市场自动更新
+
+本仓库已内置 `.claude-plugin/marketplace.json` 与 `plugin.json`，每次云端同步新内容时 GitHub Actions 会自动递增插件版本号，支持 Claude Code 原生检测与自动更新：
+
+```text
+# 一步安装（Claude Code 2.1.275+）
+/plugin install vibe-design-tips --marketplace iamvicliu/vibe-design-tips-skill
+
+# 或分步添加市场并安装
+/plugin marketplace add iamvicliu/vibe-design-tips-skill
+/plugin install vibe-design-tips@vibe-design-tips
+```
+
+安装后在 `/plugin` → **Marketplaces** 中为 `vibe-design-tips` 开启 **Auto-update**，即可在每次启动 Claude Code 会话时自动检查并更新插件缓存。
+
+### 3. `npx skills` CLI 统一管理
+
+如果平时使用 Vercel Labs `skills` CLI 管理多端 Skill，也可直接安装并在需要时一条命令更新：
+
+```bash
+npx skills add iamvicliu/vibe-design-tips-skill
+npx skills update
+```
+
+---
+
 ## 🔄 自动同步官网更新 / Auto Sync
 
 本仓库通过 GitHub Actions（[`.github/workflows/sync-official.yml`](./.github/workflows/sync-official.yml)）**每天定时**从官方站点 [`https://vibedesign.tips`](https://vibedesign.tips/) 抓取最新发布及修订的分期内容，自动更新 `issues/`、`SKILL.md` 与 `README.md` 并提交到主分支（也支持在 Actions 页面手动点击 **Run workflow** 立即触发）。

@@ -376,6 +376,85 @@ def update_readme_md(content: str, issues: list[IssueInfo]) -> str:
     return updated
 
 
+def compute_next_plugin_version(
+    current_version: str,
+    max_issue: int,
+    has_content_changes: bool,
+) -> str:
+    if not has_content_changes:
+        return current_version or f"1.{max_issue}.0"
+
+    match = re.match(r"^\s*(\d+)\.(\d+)\.(\d+)\s*$", current_version or "")
+    if match:
+        major, minor, patch = int(match.group(1)), int(match.group(2)), int(match.group(3))
+        if max_issue > minor:
+            return f"{major}.{max_issue}.0"
+        if max_issue == minor:
+            return f"{major}.{minor}.{patch + 1}"
+
+    return f"1.{max_issue}.0"
+
+
+def update_plugin_manifests(
+    repo_root: Path,
+    max_issue: int,
+    has_content_changes: bool,
+    dry_run: bool,
+) -> list[str]:
+    changed: list[str] = []
+    plugin_dir = repo_root / ".claude-plugin"
+    plugin_path = plugin_dir / "plugin.json"
+    marketplace_path = plugin_dir / "marketplace.json"
+
+    current_version = ""
+    plugin_data: dict | None = None
+    if plugin_path.exists():
+        plugin_data = json.loads(plugin_path.read_text(encoding="utf-8"))
+        current_version = str(plugin_data.get("version") or "")
+
+    marketplace_data: dict | None = None
+    if marketplace_path.exists():
+        marketplace_data = json.loads(marketplace_path.read_text(encoding="utf-8"))
+        if not current_version:
+            current_version = str((marketplace_data.get("metadata") or {}).get("version") or "")
+
+    next_version = compute_next_plugin_version(current_version, max_issue, has_content_changes)
+
+    if plugin_data is not None and plugin_data.get("version") != next_version:
+        plugin_data["version"] = next_version
+        changed.append(".claude-plugin/plugin.json")
+        if not dry_run:
+            plugin_path.write_text(
+                json.dumps(plugin_data, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+    if marketplace_data is not None:
+        mp_dirty = False
+        metadata = marketplace_data.get("metadata")
+        if isinstance(metadata, dict) and metadata.get("version") != next_version:
+            metadata["version"] = next_version
+            mp_dirty = True
+
+        plugins = marketplace_data.get("plugins")
+        if isinstance(plugins, list):
+            for entry in plugins:
+                if isinstance(entry, dict) and entry.get("name") == "vibe-design-tips":
+                    if entry.get("version") != next_version:
+                        entry["version"] = next_version
+                        mp_dirty = True
+
+        if mp_dirty:
+            changed.append(".claude-plugin/marketplace.json")
+            if not dry_run:
+                marketplace_path.write_text(
+                    json.dumps(marketplace_data, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+
+    return changed
+
+
 def build_commit_message(
     max_issue_str: str,
     added: list[IssueInfo],
@@ -539,6 +618,13 @@ def main() -> int:
         meta_changed.append("README.md")
         if not dry_run:
             readme_path.write_text(readme_new, encoding="utf-8")
+
+    has_content_changes = bool(added or updated)
+    if issues:
+        max_issue = max(i.number for i in issues)
+        meta_changed.extend(
+            update_plugin_manifests(repo_root, max_issue, has_content_changes, dry_run)
+        )
 
     summary_md = build_step_summary(issues, added, updated, meta_changed, dry_run)
     print(summary_md)
